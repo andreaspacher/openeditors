@@ -26,6 +26,7 @@ The current version contains data from journals pertaining to the following 17 p
 - Emerald
 - Frontiers
 - Hindawi
+- IGI Global
 - Inderscience
 - John Benjamins
 - Karger
