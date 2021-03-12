@@ -39,3 +39,7 @@ The current version contains data from journals pertaining to the following 17 p
 - SAGE
 
 The URLs to the journal websites (as visible in the `Data`-folder) stems from https://github.com/andreaspacher/academic-publishers.
+
+## Related Projects
+
+Jan Kamlah and Philipp Zumstein have scraped editors from Springer, Wiley & Elsevier with Python at https://github.com/JKamlah/scrape-editorial-board.
