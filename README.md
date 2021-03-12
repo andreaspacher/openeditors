@@ -4,6 +4,8 @@
 
 Webscraping data about scholarly journals' editors and editorial boards.
 
+For methodical details and more information, see [this preprint at *SocArXiv*](https://doi.org/10.31235/osf.io/jvzq7).
+
 ## Results
 
 Data about **478.562** editorial positions at **6.090** journals from **17** publishers were found. 
