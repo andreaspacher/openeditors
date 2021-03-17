@@ -1,5 +1,7 @@
 # read data
-editors <- read.csv("Output\\editors.csv", header = TRUE, fileEncoding = "UTF-8")
+editors1 <- readr::read_csv("Output\\editors1.csv")
+editors2 <- readr::read_csv("Output\\editors2.csv")
+editors <- rbind(editors1, editors2)
 
 # remove duplicates
 doubles <- duplicated(editors[, c("editor", "journal", "publisher")], )
@@ -55,5 +57,50 @@ editors$journal <- stringi::stri_replace_all_fixed(
   vectorize_all = FALSE
 )
 
+# clean encoding (fix wrongful unicodes)
+WRONG <- c("<U+0096>", "<U+0092>", "<U+0097>", "<U+00A0>", "<U+009A>",
+           "<U+02BB>", "<U+009E>", "<U+0086>", "<U+0093>", "<U+0094>",
+           "<U+1EC7>", "<U+00A8>", "<U+0450>", "<U+008A>", "<U+00AA>",
+           "<U+0218>", "<U+0091>", "<U+00B4>", "<U+200B>", "<U+206F>",
+           "<U+0219>", "<U+0091>", "<U+01FA>", "<U+039C>", "<U+00A1>",
+           "<U+00B7>", "<U+021B>", "<U+FFFD>",  "<U+FB01>","<U+008E>",
+           "<U+00AD>", "<U+00AE>", "<U+00AB>", "<U+00BB>", "<U+0099>",
+           "<U+0203>", "<U+0392>", "<U+0421>", "<U+041C>", "<U+202A>",
+           "<U+039A>", "<U+0441>", "<U+0410>", "<U+00A9>", "<U+200E>",
+           "<U+00B3>", "<U+02BD>", "<U+1EA1>", "<U+1ECD>", "<U+1ED9>")
+
+RIGHT <- c("–", "'", "—", " ", "š",
+           "ʻ", "ž", "†", "“", "”",
+           "ệ", "ü", "è", "Š", "ª",
+           "Ș", "'", "´", "", "",
+           "ș", "'", "Ǻ", "M", "¡",
+           "·", "ț", "", "fi", "Ž",
+           "-", "®", "«", "»", "™",
+           "ȃ", "B", "C", "M", "",
+           "K", "c", "A", "©", "",
+           "³", "ʽ", "ạ", "ọ", "ộ")
+
+editors$editor <- stringi::stri_replace_all_fixed(
+  editors$editor, 
+  WRONG, 
+  RIGHT, 
+  vectorize_all = FALSE
+)
+editors$affiliation <- stringi::stri_replace_all_fixed(
+  editors$affiliation, 
+  WRONG, 
+  RIGHT, 
+  vectorize_all = FALSE
+)
+
+# test how many editor names and affiliations
+# still contain pointy brackets
+ASCII <- editors[(grepl("<.*>", editors$editor) | grepl("<.*>", editors$affiliation)), ]
+
 # save the cleaned data
-write.csv(editors, "Output\\editors.csv", fileEncoding = "UTF-8", row.names = FALSE)
+editors1 <- editors[1:nrow(editors1),]
+startrow <- nrow(editors1)+1
+editors2 <- editors[startrow:nrow(editors),]
+
+write.csv(editors1, "Output\\editors1.csv", fileEncoding = "UTF-8", row.names = FALSE)
+write.csv(editors2, "Output\\editors2.csv", fileEncoding = "UTF-8", row.names = FALSE)
