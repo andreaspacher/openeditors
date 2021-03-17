@@ -1,9 +1,6 @@
 # read data
 editors <- read.csv("Output\\editors.csv", header = TRUE, fileEncoding = "UTF-8")
 
-# remove automatically created numeric columns
-editors$X <- NULL
-
 # remove duplicates
 doubles <- duplicated(editors[, c("editor", "journal", "publisher")], )
 doubles_df <- editors[doubles, ] # take a look at the duplicates
@@ -59,4 +56,4 @@ editors$journal <- stringi::stri_replace_all_fixed(
 )
 
 # save the cleaned data
-write.csv(editors, "Output\\editors.csv", fileEncoding = "UTF-8")
+write.csv(editors, "Output\\editors.csv", fileEncoding = "UTF-8", row.names = FALSE)
