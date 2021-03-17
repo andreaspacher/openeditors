@@ -31,4 +31,4 @@ for(i in 1:length(journals)) {
 DF <- dplyr::bind_rows(EdList) %>%
   select(publisher, journal, role, editor, affiliation, url, date)
 
-write.csv(DF, file = paste0("Output\\CUP-",i,".csv"))
+write.csv(DF, file = paste0("Output\\CUP-",i,".csv"), fileEncoding = "UTF-8")
