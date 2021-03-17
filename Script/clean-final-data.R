@@ -1,6 +1,6 @@
 # read data
-editors1 <- readr::read_csv("Output\\editors1.csv")
-editors2 <- readr::read_csv("Output\\editors2.csv")
+editors1 <- read.csv("Output\\editors1.csv", fileEncoding = "UTF-8")
+editors2 <- read.csv("Output\\editors2.csv", fileEncoding = "UTF-8")
 editors <- rbind(editors1, editors2)
 
 # remove duplicates
@@ -13,7 +13,9 @@ editors <- editors[!is.na(editors$publisher), ]
 
 # check whether there are rows where both editor and affiliation are NA
 nas_df <- editors[which(is.na(editors$editor) & is.na(editors$affiliation)), ] # 0
-editors <- editors[!with(editors, is.na(editor) & is.na(affiliation)), ]
+
+# perhaps remove editors who are NA
+editors <- editors[!with(editors, is.na(editor)), ]
 
 # clean encoding (fix wrongful hex-codes)
 ascii <- structure(list(Hex = c("<a0>", "<a1>", "<a2>", "<a3>", "<a4>", 
