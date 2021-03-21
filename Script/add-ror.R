@@ -171,7 +171,7 @@ editors_aff <- editors_aff %>%
 
 #create character vector with unique cleaned affiliations
 aff <- editors_aff %>%
-  select(affiliation_clean) %>%
+  pull(affiliation_clean) %>%
   unique()
 
 # query ROR API
@@ -183,7 +183,7 @@ pb <- progress_estimated(length(aff))
 ror <- map_dfr(aff, getROR_progress)
 
 #check how many unique affiliations are mapped to ROR
-check <- ror_mapped_all %>%
+check <- ror %>%
   filter(!is.na(ror)) %>%
   nrow()
 #105015 of 141915 affiliations mapped to ROR ID
@@ -201,7 +201,7 @@ write_csv(affiliations_ror, "Data/affiliations_ror.csv")
 affiliations_ror <- read_csv("Data/affiliations_ror.csv")
 
 editors_ror <- editors %>%
-  left_join(affiliations_ror, by = "affiliation") %>%
+  left_join(affiliations_ror, by = "affiliation", na_matches = "never") %>%
   #only keep columns of interest
   select(publisher, 
          issn, 
