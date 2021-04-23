@@ -91,6 +91,18 @@ editors$continent <- countrycode(sourcevar = editors$country,
 # "Error: Flat files can't store the list column `country`"
 editors <- editors %>% mutate(country = map_chr(country, toString))
 
+disamb_country <- function(x) {
+  x <- if(grepl("^c\\(\\\"", x)) {
+    x <- gsub("^.{0,3}", "", x)
+    x <- gsub(".{2}$", "", x)
+    x <- gsub("\"", "", x)
+  } else {
+    x
+  }
+  return(x)
+}
+editors$country <- sapply(editors$country, function(x) disamb_country(x))
+
 # rearrange columns
 editors <- editors %>%
   select(publisher, 

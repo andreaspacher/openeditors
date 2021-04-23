@@ -8,7 +8,7 @@ For methodical details and more information, see [this preprint at *SocArXiv*](h
 
 ## Results
 
-Data about **478.562** editorial positions at **6.090** journals from **17** publishers were found. 
+Data about **478.512** editorial positions at **6.090** journals from **17** publishers were found. 
 
 To see the results, search through the dataset at https://openeditors.ooir.org/, or download the files from the `Output`-folder.
 
