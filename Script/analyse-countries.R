@@ -100,6 +100,7 @@ editors <- editors %>%
          editor,
          affiliation,
          country,
+         continent,
          ror,
          url,
          date)
