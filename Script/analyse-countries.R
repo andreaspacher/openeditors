@@ -7,7 +7,6 @@ library("maps")
 editors1 <- readr::read_csv("Output/editors1_ror.csv")
 editors2 <- readr::read_csv("Output/editors2_ror.csv")
 editors <- bind_rows(editors1, editors2)
-rm(editors1, editors2)
 
 #--------------------------------------------------------------
 # PART 2 Add Country Names (Based on the "maps"-Library)
@@ -77,10 +76,10 @@ editorscountries <- editorscountries %>%
 #-------------------------------------------------------------
 library("countrycode")
 editors <- as.data.frame(editors)
+editors$country <- as.character(editors$country)
 editors$continent <- countrycode(sourcevar = editors$country,
                                  origin = "country.name",
                                  destination = "continent")
-# Unfortunately, this leads to an error . . . 
 
 #--------------------------------------------------------------
 # PART 4 Save data
@@ -109,5 +108,5 @@ editors <- editors %>%
 editors1_ror_c <- slice_head(editors, n=nrow(editors1))
 editors2_ror_c <- slice_tail(editors, n=nrow(editors2))
 
-write_csv(editors1_ror_c, "Output/editors1_ror.csv")
-write_csv(editors1_ror_c, "Output/editors2_ror.csv")
+write_csv(editors1_ror_c, "Output/editors1_ror_and_countries.csv")
+write_csv(editors2_ror_c, "Output/editors2_ror_and_countries.csv")
