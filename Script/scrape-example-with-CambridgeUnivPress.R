@@ -1,12 +1,9 @@
-library('dplyr') # --------------- for bind_rows() & select()
-library('stringr') # ------------- for str_extract_all()
-
-# obtain a dataframe of MDPI journals
+# obtain a dataframe of CUP journals
 journals <- read.csv("Data\\alljournals.csv")
 journals <- journals[journals$publisher == "Cambridge University Press",]
 
 # get journal abbreviations from the URLs
-Abbr <- str_extract_all(journals$url, "(?<=/journals/).*")
+Abbr <- stringr::str_extract_all(journals$url, "(?<=/journals/).*")
 Abbr <- unlist(Abbr)
 
 # prepare the scraping process
@@ -28,6 +25,7 @@ for(i in 1:length(journals)) {
   Sys.sleep(11)
 }
 
+library(tidyverse)
 DF <- dplyr::bind_rows(EdList) %>%
   select(publisher, journal, role, editor, affiliation, url, date)
 
