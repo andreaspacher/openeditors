@@ -3,3 +3,7 @@
 .RData
 .Ruserdata
 Output/editors.csv
+editors-from-africa.csv
+editors-from-africa.png
+editors-from-africa-aggregate.csv
+Script/africa-skupien.R
