@@ -10,29 +10,25 @@ For methodical details and more information, see [this preprint at *SocArXiv*](h
 
 ### Basic Data
 
-Data about ca. **480.000** editorial positions at **6.090** journals from **17** publishers were found. 
+Data about ca. **594.580** editorial positions at **6.346** journals from **26** publishers were found. 
 
 To see the results, see the `Output`-folder, or browse through the dataset at https://openeditors.ooir.org/. 
 
-In the `Output`-folder, the data from the 17 non-predatory publishers were split into two files to avoid documents of over 100 MB:
-- `editors1.csv` contains editor data from APA, ASCE, Brill, CUP, Elsevier, Emerald, and Frontiers;
-- `editors2.csv` contains editor data from Hindawi, IGI Global, Inderscience, John Benjamins, Karger, MDPI, Pleiades, PLOS, RSC, and SAGE.
-- The same filenames with `*_ror.csv` additionally contain [ROR](https://ror.org/)-identifiers, while the ones with `*_ror_countries.csv` have yet another column with automatically extracted country names.
+In the `Output/2022-Scraping`-folder, the data were split into two files to avoid documents of over 100 MB (`editors1.csv` and `editors2.csv`).
 
-### Predatory Publishers
+Note that the `Output/2021-Scraping`-folder include files with `*_ror.csv`. They contain [ROR](https://ror.org/)-identifiers, while the ones with `*_ror_countries.csv` have yet another column with automatically extracted country names. (I plan to extend those data to the files in `Output/2022-Scraping` in the near future.)
 
-In addition, data about **19.487** editorial positions at **752** journals from **5** predatory publishers were found.
-
-They are listed in `Output\editors_predatory.journals.csv`.
 
 ## Data Sample
 
-The current version contains data from journals pertaining to the following 17 (non-predatory) publishers:
+The current version contains data from journals pertaining to the following 21 (non-predatory) publishers:
 
 - American Psychological Association (APA)
 - American Society of Chemical Engineers (ASCE)
+- BioMedCentral
 - Brill
 - Cambridge University Press (CUP)
+- eLife
 - Elsevier
 - Emerald
 - Frontiers
@@ -42,10 +38,12 @@ The current version contains data from journals pertaining to the following 17 (
 - John Benjamins
 - Karger
 - Multidisciplinary Digital Publishing Institute (MDPI)
+- PeerJ
 - Pleiades
 - Public Library of Science (PLOS)
 - Royal Society of Chemistry (RSC)
 - SAGE
+- Springer Nature
 
 ### Predatory Publishers
 

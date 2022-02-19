@@ -56,8 +56,24 @@ editorscountries <- data.frame(table(editorscountries))
 editorscountries <- editorscountries[rev(order(editorscountries$Freq)),]
 colnames(editorscountries) <- c("country", "Freq")
 
-COUNTRY1 <- c("United States", "United Kingdom", "Czechia", "Russian Federation")
-COUNTRY2 <- c("USA", "UK", "Czech Republic", "Russia")
+COUNTRY1 <- c("United States", "United Kingdom", "Czechia", "Russian Federation",
+              "Falkland Islands", "Isle of Man", "Saint Helena", "Gibraltar",
+              "US Virgin Islands",
+              "Sicily",
+              "Guadeloupe", "New Caledonia", "French Guiana", "French Polynesia", "Reunion", "Martinique",
+              "Azores", "Madeira",
+              "Canary Islands",
+              "Syrian Arab Republic",
+              "Faroe Islands", "Greenland")
+COUNTRY2 <- c("USA", "UK", "Czech Republic", "Russia",
+              "UK", "UK", "UK", "UK",
+              "USA",
+              "Italy",
+              "France", "France", "France", "France", "France", "France",
+              "Portugal", "Portugal",
+              "Spain",
+              "Syria",
+              "Denmark", "Denmark")
 length(unique(editorscountries$country))
 editorscountries$country <- stringi::stri_replace_all_fixed(
   editorscountries$country, 

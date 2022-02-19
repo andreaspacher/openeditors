@@ -52,8 +52,8 @@ getROR_progress <- function(x){
 
 # read data
 # NB readr reads and writes data as UTF-8 by default, unless locale() is specified)
-editors1 <- read_csv("Output/editors1.csv")
-editors2 <- read_csv("Output/editors2.csv")
+editors1 <- read_tsv("Output/2022-Scraping/editors1.tsv")
+editors2 <- read_tsv("Output/2022-Scraping/editors2.tsv")
 editors <- bind_rows(editors1, editors2)
 
 # NB Script/clean_data_final uses read.csv from base R
@@ -156,8 +156,7 @@ editors_aff$affiliation_clean <- stringi::stri_replace_all_fixed(
 
 # test how many affiliations still contain pointy brackets
 ASCII <- editors_aff[(grepl("<.*>", editors_aff$affiliation_clean)), ]
-# n=249, all look to be html tags
-
+rm(ASCII)
 # remove all tags in column affiliation_clean
 # this is only for purposes of matching of affiliation strings to ROR IDs
 # use dplyr and stringr from tidyverse for own efficiency
@@ -192,13 +191,9 @@ check <- ror %>%
 affiliations_ror <- editors_aff %>%
   left_join(ror, by = c("affiliation_clean" = "affiliation"))
 
-write_csv(affiliations_ror, "Data/affiliations_ror.csv")
-
 #--------------------------------------------------------------
 # PART 4 Add ROR data to full editor data
 #-------------------------------------------------------------
-
-affiliations_ror <- read_csv("Data/affiliations_ror.csv")
 
 editors_ror <- editors %>%
   left_join(affiliations_ror, by = "affiliation", na_matches = "never") %>%
@@ -224,6 +219,6 @@ check <- editors_ror %>%
 editors1_ror <- slice_head(editors_ror, n=nrow(editors1))
 editors2_ror <- slice_tail(editors_ror, n=nrow(editors2))
 
-write_csv(editors1_ror, "Output/editors1_ror.csv")
-write_csv(editors2_ror, "Output/editors2_ror.csv")
+write_csv(editors1_ror, "Output/2022-Scraping/editors1_ror.csv")
+write_csv(editors2_ror, "Output/2022-Scraping/editors2_ror.csv")
   

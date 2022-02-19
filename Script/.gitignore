@@ -1,2 +1,10 @@
+.Rhistory
+africa-skupien.R
+analyse-countries.R
+descriptive-statistics.R
 save-data-to-mysql.R
-clean-encoding.R
+scrape_Springer.R
+scrape_Taylor_and_Francis.R
+scrape_Wiley.R
+springer-get-links-to-editorial-boards.R
+wiley-get-links-to-editorial-boards.R
