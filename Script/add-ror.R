@@ -18,7 +18,7 @@ library(tidyverse)
 # Further improvements could be made by evaluating ROR IDs 
 # for which chosen = 0 but with high values for 'score'
 
-# define function to query ROR API with affilition, extract ROR ID
+# define function to query ROR API with affiliation, extract ROR ID
 getROR <- function(affiliation){
   url <- paste0("https://api.ror.org/organizations?affiliation=",
                 URLencode(affiliation))
