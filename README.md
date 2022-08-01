@@ -10,11 +10,13 @@ For methodical details and more information, see [this preprint at *SocArXiv*](h
 
 ### Basic Data
 
-Data about ca. **594.580** editorial positions at **6.346** journals from **26** publishers were found. 
+Data about ca. **594.580** editorial positions at **7.352** journals from **26** publishers were found. 
 
 To see the results, see the `Output`-folder, or browse through the dataset at https://openeditors.ooir.org/. 
 
 In the `Output/2022-Scraping`-folder, the data were split into two files to avoid documents of over 100 MB (`editors1.csv` and `editors2.csv`).
+
+A parquet-file (`editors.parquet`) offers a single document.
 
 Note that the `Output/2021-Scraping`-folder include files with `*_ror.csv`. They contain [ROR](https://ror.org/)-identifiers, while the ones with `*_ror_countries.csv` have yet another column with automatically extracted country names. (I plan to extend those data to the files in `Output/2022-Scraping` in the near future.)
 
