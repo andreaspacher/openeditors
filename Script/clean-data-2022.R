@@ -1,8 +1,8 @@
 library(tidyverse)
 
 # read files and merge
-A <- list.files(path = "Output\\2022-Scraping\\by_publisher\\", pattern = ".*.tsv")
-A <- map_df(A, ~read_tsv(paste0("Output\\2022-Scraping\\by_publisher\\", .x), locale = locale(encoding = "windows-1252")) %>%
+A <- list.files(path = file.path("Output", "2022-Scraping", "by_publisher"), pattern = ".*.tsv", full.names = TRUE)
+A <- map_df(A, ~read_tsv(.x, locale = locale(encoding = as.character(readr::guess_encoding(.x)[1,1]))) %>%
            mutate(across(.fns = as.character))) %>%
   type_convert()
 
@@ -247,7 +247,7 @@ DF <- as.data.frame(DF)
 editors1 <- DF[1:(nrow(DF)/2),]
 editors2 <- DF[((nrow(DF)/2)+1):nrow(DF),]
 
-write_tsv(editors1, "Output\\2022-Scraping\\editors1.tsv")
-write_tsv(editors2, "Output\\2022-Scraping\\editors2.tsv")
-write_csv(editors1, "Output\\2022-Scraping\\editors1.csv")
-write_csv(editors2, "Output\\2022-Scraping\\editors2.csv")
+write_tsv(editors1, file.path("Output", "2022-Scraping", "editors1.tsv"))
+write_tsv(editors2, file.path("Output", "2022-Scraping", "editors2.tsv"))
+write_csv(editors1, file.path("Output", "2022-Scraping", "editors1.csv"))
+write_csv(editors2, file.path("Output", "2022-Scraping", "editors2.csv"))

@@ -30,6 +30,7 @@ The current version contains data from journals pertaining to the following 21 (
 - BioMedCentral
 - Brill
 - Cambridge University Press (CUP)
+- Copernicus Publications
 - eLife
 - Elsevier
 - Emerald
