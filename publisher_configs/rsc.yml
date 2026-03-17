@@ -1,0 +1,31 @@
+publisher:
+  key: rsc
+  name: Royal Society of Chemistry
+  base_url: "https://www.rsc.org"
+
+journals:
+  start_url: "https://www.rsc.org/publishing/journals"
+
+  listing:
+    item_selector: "div.listWrapper a.card"
+
+    fields:
+      journal:
+        selector: "h4"
+        attr: text
+      url:
+        attr: href
+
+editors:
+  url_pattern: "{journal_url}"
+  board_section:
+    content_selector: "#accordionIdThree"
+  parsing:
+    strategy: rsc
+
+fetch:
+  mode: browser
+  headers:
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  rate_limit:
+    min_seconds_per_request: 2

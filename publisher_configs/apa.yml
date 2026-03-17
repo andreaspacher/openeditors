@@ -1,0 +1,33 @@
+publisher:
+  key: apa
+  name: American Psychological Association
+  base_url: "https://www.apa.org"
+
+journals:
+  start_url: "https://www.apa.org/pubs/journals/browse?query=Title:*&type=journal"
+  listing:
+    item_selector: ".sresults ul li"
+    fields:
+      journal:
+        selector: "a"
+        attr: text
+      url:
+        selector: "a"
+        attr: href
+
+editors:
+  url_pattern: "{journal_url}"   # no suffix needed for APA; others might use "{journal_url}/editorial-board"
+  board_section:
+    # Find the accordion section titled "Editorial Board", then grab its sibling content
+    title_selector: "div.accordion_title"
+    title_text: "Editorial Board"
+    content_selector: "div.accordion_content"
+  parsing:
+    strategy: "apa"   # <h2> = role, <p> contains name (non-em) + affiliation (em)
+
+fetch:
+  mode: browser
+  headers:
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  rate_limit:
+    min_seconds_per_request: 2

@@ -1,0 +1,31 @@
+publisher:
+  key: plos
+  name: PLOS
+  base_url: "https://plos.org"
+
+journals:
+  start_url: "https://plos.org/our-journals/"
+
+  listing:
+    item_selector: "h3"
+
+    fields:
+      journal:
+        selector: "a"
+        attr: text
+      url:
+        selector: "a"
+        attr: href
+
+editors:
+  parsing:
+    strategy: "plos"
+  board_section:
+    full_page: true
+
+fetch:
+  mode: browser
+  headers:
+    user_agent: "OpenEditors2/0.1 (+andreas.pacher@da-vienna.at)"
+  rate_limit:
+    min_seconds_per_request: 2

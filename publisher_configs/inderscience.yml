@@ -1,0 +1,42 @@
+publisher:
+  key: inderscience
+  name: Inderscience
+  base_url: "https://www.inderscience.com"
+
+journals:
+  start_url: "https://www.inderscience.com/mobile/journal/insubjall.php"
+  
+  # First level: Category listing
+  category_listing:
+    item_selector: "div.row.mt-4 ul li"
+    fields:
+      category_name:
+        selector: "a"
+        attr: text
+      category_url:
+        selector: "a"
+        attr: href
+  
+  # Second level: Journal listing within each category
+  journal_listing:
+    item_selector: ".content ol li"
+    fields:
+      journal:
+        selector: "a"
+        attr: text
+      url:
+        selector: "a"
+        attr: href
+
+editors:
+  url_pattern: "{journal_url}"
+  board_section:
+    content_selector: "#edboard-content"
+  parsing:
+    strategy: "inderscience"
+
+fetch:
+  headers:
+    user_agent: "OpenEditors2/0.1 (+andreas.pacher@da-vienna.at)"
+  rate_limit:
+    min_seconds_per_request: 2

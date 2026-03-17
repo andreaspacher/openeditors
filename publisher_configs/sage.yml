@@ -1,0 +1,83 @@
+publisher:
+  key: sage
+  name: SAGE Journals
+  base_url: "https://journals.sagepub.com"
+
+journals:
+  start_url: "https://journals.sagepub.com/action/showPublications?pageSize=100&startPage=0"
+  page_size: 100
+
+  pagination:
+    type: query_param
+    param: startPage
+    start_at: 0
+    # total results appears as a number in span.result__count
+    total_results:
+      selector: "span.result__count"
+      regex: "(\\d[\\d,]*)"
+      transform:
+        - type: replace
+          pattern: ","
+          repl: ""
+    # pages = ceil(total_results / page_size)
+
+  listing:
+    item_selector: "div.item__body.clearfix"
+
+    fields:
+      journal:
+        selector: "h3.item__title a"
+        attr: text
+        transform:
+          - type: trim
+
+      url:
+        selector: "h3.item__title a"
+        attr: href
+        transform:
+          - type: url_join
+            base: "https://journals.sagepub.com"
+
+      # safer approach: extract ALL ISSNs, then later try to map to print/e
+      issn_all:
+        selector: ".item__meta .meta__row--mobile"
+        attr: text
+        regex_findall: "(\\b\\d{4}-\\d{3}[\\dX]\\b)"
+        transform:
+          - type: unique
+          - type: join
+            sep: ";"
+
+      # optional: attempt to split print vs online when labels exist
+      issn_print:
+        selector: ".item__meta .meta__row--mobile .meta__label.meta__issns"
+        attr: parent_text
+        regex: "(\\b\\d{4}-\\d{3}[\\dX]\\b)"
+
+      issn_e:
+        selector: ".item__meta .meta__row--mobile .meta__label.meta__eissn"
+        attr: parent_text
+        regex: "(\\b\\d{4}-\\d{3}[\\dX]\\b)"
+
+editors:
+  url_pattern: "{journal_url}"
+  url_slug_extract:
+    regex: "/home/([^/?#]+)"
+  url_template: "https://journals.sagepub.com/editorial-board/{journal_slug}"
+
+  board_section:
+    content_selector: ".container .col-12.col-lg-8"
+
+  parsing:
+    strategy: sage
+
+fetch:
+  mode: browser
+  headers:
+    user_agent: "Mozilla/5.0 (compatible; OpenEditors2/0.1; +andreas.pacher@da-vienna.at)"
+  rate_limit:
+    min_seconds_per_request: 5
+    jitter_seconds: 1.5
+  retries:
+    max_attempts: 3
+    backoff_seconds: 10

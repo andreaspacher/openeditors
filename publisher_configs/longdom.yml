@@ -1,0 +1,30 @@
+publisher:
+  key: longdom
+  name: Longdom
+  base_url: "https://www.longdom.org"
+
+journals:
+  start_url: "https://www.longdom.org/journals-by-title.html"
+  local_file: "publisher_configs/longdom.html"
+  listing:
+    item_selector: "div.col-10 h3.font-size-3"
+    fields:
+      journal:
+        selector: "a.deep-orange-400-before"
+        attr: text
+      url:
+        selector: "a.deep-orange-400-before"
+        attr: href
+
+editors:
+  parsing:
+    strategy: longdom
+  board_section:
+    full_page: true
+
+fetch:
+  mode: browser
+  rate_limit:
+    min_seconds_per_request: 8
+  headers:
+    user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36

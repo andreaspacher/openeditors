@@ -1,0 +1,30 @@
+publisher:
+  key: scirp
+  name: SCIRP
+  base_url: "https://www.scirp.org"
+
+journals:
+  start_url: "https://www.scirp.org/journal/index"
+  local_file: "publisher_configs/scirp.html"
+  listing:
+    item_selector: "div.con_main ul.maz li"
+    fields:
+      journal:
+        selector: "a"
+        attr: text
+      url:
+        selector: "a"
+        attr: href
+
+editors:
+  parsing:
+    strategy: scirp
+  board_section:
+    full_page: true
+
+fetch:
+  mode: browser
+  rate_limit:
+    min_seconds_per_request: 2
+  headers:
+    user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36

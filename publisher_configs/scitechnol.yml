@@ -1,0 +1,30 @@
+publisher:
+  key: scitechnol
+  name: SciTechnol
+  base_url: "https://www.scitechnol.com"
+
+journals:
+  start_url: "https://www.scitechnol.com/subscription-journals-list.php"
+  local_file: "publisher_configs/scitechnol.html"
+  listing:
+    item_selector: "ul.list-unstyled.lists-base li"
+    fields:
+      journal:
+        selector: "a.font-size-16"
+        attr: title
+      url:
+        selector: "a.font-size-16"
+        attr: href
+
+editors:
+  parsing:
+    strategy: scitechnol
+  board_section:
+    full_page: true
+
+fetch:
+  mode: browser
+  rate_limit:
+    min_seconds_per_request: 8
+  headers:
+    user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36

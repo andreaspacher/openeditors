@@ -1,0 +1,39 @@
+publisher:
+  key: peerj
+  name: PeerJ
+  base_url: "https://peerj.com"
+
+journals:
+  start_url: "https://peerj.com/"
+
+  listing:
+    item_selector: "main div.container div.row div.col-md-6"
+
+    fields:
+      journal:
+        selector: "a.v-card--link h2"
+        attr: text
+      url:
+        selector: "a.v-card--link"
+        attr: href
+
+fetch:
+  mode: browser
+  headers:
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  rate_limit:
+    min_seconds_per_request: 2
+
+editors:
+  pagination:
+    strategy: peerj
+
+  journal_map:
+    "PeerJ": "peerj"
+    "PeerJ Computer Science": "cs"
+
+  board_section:
+    content_selector: ".v-main__wrap .col-md-7"
+
+  parsing:
+    strategy: peerj

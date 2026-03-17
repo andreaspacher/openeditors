@@ -1,0 +1,31 @@
+publisher:
+  key: cup
+  name: Cambridge University Press
+  base_url: "https://www.cambridge.org"
+
+journals:
+  start_url: "https://www.cambridge.org/core/publications/journals"
+
+  listing:
+    item_selector: "li.product-list-entry"
+
+    fields:
+      journal:
+        selector: "div.large-8.columns a.title"
+        attr: text
+      url:
+        selector: "div.large-8.columns a.title"
+        attr: href
+
+editors:
+  url_pattern: "{journal_url}/information/about-this-journal/editorial-board"
+  board_section:
+    content_selector: "div#maincontent"
+  parsing:
+    strategy: "cup"
+
+fetch:
+  headers:
+    user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36"
+  rate_limit:
+    min_seconds_per_request: 8

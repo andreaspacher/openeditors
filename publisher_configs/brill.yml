@@ -1,0 +1,40 @@
+publisher:
+  key: brill
+  name: Brill
+  base_url: https://brill.com
+
+fetch:
+  mode: html  # or "browser" if JavaScript rendering is needed
+  rate_limit:
+    min_seconds_per_request: 2
+  headers:
+    user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+
+journals:
+  start_url: https://brill.com/browse?et_0=journal&et_1=j&level=all&pageSize=50&sort=titlesort&page=1
+  page_size: 50
+  
+  pagination:
+    type: query_param
+    param: page
+    start_at: 1
+    total_results:
+      selector: span.count
+      regex: (\d+)
+      source: text
+  
+  listing:
+    item_selector: div.type-search-result
+    
+    fields:
+      journal:
+        selector: div.text-headline a
+        source: text
+      
+      url:
+        selector: div.text-headline a
+        source: href
+      
+      issn:
+        selector: dd.publisherissn
+        source: text

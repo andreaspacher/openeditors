@@ -1,0 +1,33 @@
+publisher:
+  key: karger
+  name: Karger
+  base_url: https://karger.com
+
+fetch:
+  mode: browser
+  rate_limit:
+    min_seconds_per_request: 2
+  headers:
+    user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+
+journals:
+  start_url: https://karger.com/pages/journals-az
+  
+  listing:
+    item_selector: div.destinations ul li
+    
+    fields:
+      journal:
+        selector: a
+        source: text
+      
+      url:
+        selector: a
+        source: href
+
+editors:
+  url_pattern: "{journal_url}/pages/editorial-board"
+  board_section:
+    content_selector: "#page_content .span12"
+  parsing:
+    strategy: "karger"

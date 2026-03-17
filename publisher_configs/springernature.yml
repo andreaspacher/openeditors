@@ -1,0 +1,46 @@
+publisher:
+  key: springernature
+  name: Springer Nature
+  base_url: "https://link.springer.com"
+
+journals:
+  start_url: "https://link.springer.com/journals/a/1"
+  page_size: 200
+
+  # Alphabet navigation configuration
+  alphabet_nav:
+    type: "alphabet_path"  # New type for path-based alphabet navigation
+    letters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ0"
+    # Optional: if some letters have no journals, you can detect and skip
+    empty_letter_selector: "p:contains('No journals found')"
+
+  listing:
+    item_selector: "li.c-atoz-list__item"
+
+    fields:
+      journal:
+        selector: "a"
+        attr: text
+      url:
+        selector: "a"
+        attr: href
+
+  pagination:
+    type: "path_based"  # For pages within each letter
+    total_results:
+      selector: "p[data-test='atoz-total-items'] span"
+      regex: '(\d+)'
+
+editors:
+  url_pattern: "{journal_url}/editorial-board"
+  board_section:
+    content_selector: ".c-list-bullets"
+  parsing:
+    strategy: springernature
+
+fetch:
+  mode: http
+  headers:
+    user_agent: "OpenEditors2/0.1 (+andreas.pacher@da-vienna.at)"
+  rate_limit:
+    min_seconds_per_request: 4

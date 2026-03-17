@@ -1,0 +1,26 @@
+publisher:
+  key: mdpi
+  name: MDPI
+  base_url: "https://www.mdpi.com"
+
+journals:
+  start_url: "https://www.mdpi.com/about/journals"
+  local_file: "publisher_configs/mdpi.html"
+
+  listing:
+    item_selector: "table.journaltable tbody tr"
+
+    fields:
+      journal:
+        selector: "a.lean"
+        attr: text
+      url:
+        selector: "a.lean"
+        attr: href
+
+fetch:
+  mode: browser
+  headers:
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  rate_limit:
+    min_seconds_per_request: 2

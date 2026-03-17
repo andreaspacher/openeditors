@@ -1,0 +1,45 @@
+publisher:
+  key: emerald
+  name: Emerald
+  base_url: "https://www.emeraldgrouppublishing.com"
+
+journals:
+  start_url: "https://www.emeraldgrouppublishing.com/publish-with-us/publish-in-a-journal/find-a-journal"
+  page_size: 20  # Add this - estimate items per page (adjust based on what you see)
+
+  listing:
+    item_selector: "div.card--journal"
+
+    fields:
+      journal:
+        selector: "h4"
+        attr: text
+      url:
+        selector: "a.btn-secondary"
+        attr: href
+        transform:
+          - type: url_join
+            base: "https://www.emeraldgrouppublishing.com"
+
+  pagination:
+      type: "query_param"
+      param: "page"
+      start_at: 0
+      total_results:
+        selector: "li.pager__item--last a"
+        source: "href"  # Add this to be explicit
+        regex: '\?page=(\d+)'
+
+editors:
+  url_pattern: "{journal_url}"
+  board_section:
+    content_selector: "div.editorial-team"
+  parsing:
+    strategy: "emerald"
+
+fetch:
+  mode: browser
+  headers:
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  rate_limit:
+    min_seconds_per_request: 2

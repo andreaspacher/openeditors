@@ -1,0 +1,47 @@
+publisher:
+  key: elsevier
+  name: Elsevier
+  base_url: "https://www.elsevier.com"
+
+journals:
+  start_url: "https://www.elsevier.com/fr-fr/products/journals?query=&page=1&sortBy=alphabeticalAsc"
+  page_size: 10
+
+  pagination:
+    type: query_param
+    param: page
+    start_at: 1
+    total_results:
+      selector: 'div[role*="presentation"] strong'
+      regex: "(\\d+)"
+
+  listing:
+    item_selector: "h2 a"
+
+    fields:
+      journal:
+        selector: ""
+        attr: text
+      url:
+        selector: ""
+        attr: href
+
+editors:
+  parsing:
+    strategy: elsevier
+
+  board_section:
+    full_page: true          # pass the whole page to parse_elsevier
+
+  url_pattern: "{journal_url}"   # placeholder; actual URL built in run()
+  
+  resolve_redirect: true     # signal to run() to follow redirects first
+  url_suffix: "/about/editorial-board"
+  filter_url_contains: "sciencedirect"  # skip non-SD rows
+
+fetch:
+  mode: browser   
+  headers:
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  rate_limit:
+    min_seconds_per_request: 5

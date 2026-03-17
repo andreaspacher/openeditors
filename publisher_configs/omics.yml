@@ -1,0 +1,31 @@
+publisher:
+  key: omics
+  name: OMICS
+  base_url: "https://www.omicsonline.org"
+
+journals:
+  start_url: "https://www.omicsonline.org/open-access-journals-list.php"
+  local_file: "publisher_configs/omics.html"
+  listing:
+    item_selector: "div.card-body a.nav-link"
+    fields:
+      journal:
+        selector: ""
+        attr: title
+      url:
+        selector: ""
+        attr: href
+
+editors:
+  parsing:
+    strategy: omics
+  filter_url_contains: "omicsonline"
+  board_section:
+    full_page: true
+
+fetch:
+  mode: browser
+  rate_limit:
+    min_seconds_per_request: 2
+  headers:
+    user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36

@@ -1,0 +1,36 @@
+publisher:
+  key: johnbenjamins
+  name: John Benjamins
+  base_url: https://www.jbe-platform.com
+
+fetch:
+  mode: http
+  rate_limit:
+    min_seconds_per_request: 2
+  headers:
+    user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+
+journals:
+  start_url: https://www.jbe-platform.com/content/journals?pageSize=100&page=1
+  page_size: 100
+  
+  pagination:
+    type: query_param
+    param: page
+    start_at: 1
+    total_results:
+      selector: div.paginator-container p
+      regex: of\s+(\d+)\s+results
+      source: text
+  
+  listing:
+    item_selector: ul.js-browse-item li
+    
+    fields:
+      journal:
+        selector: h3 a
+        source: text
+      
+      url:
+        selector: h3 a
+        source: href

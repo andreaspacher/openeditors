@@ -1,0 +1,28 @@
+publisher:
+  key: alliedacademies
+  name: Allied Academies
+  base_url: "https://www.alliedacademies.org"
+
+journals:
+  start_url: "https://www.alliedacademies.org/journals-by-title.php"
+  listing:
+    item_selector: "nav.nav div.col-12.col-sm-6"
+    fields:
+      journal:
+        selector: "a.nav-link"
+        attr: text
+      url:
+        selector: "a.nav-link"
+        attr: href
+
+editors:
+  url_pattern: "{journal_url}editors.php"
+  board_section:
+    content_selector: "main div.card"
+  parsing:
+    strategy: "alliedacademies"
+
+fetch:
+  mode: "http"
+  rate_limit:
+    min_seconds_per_request: 2

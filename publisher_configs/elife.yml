@@ -1,0 +1,41 @@
+publisher:
+  key: elife
+
+fetch:
+  mode: "browser"
+  rate_limit:
+    min_seconds_per_request: 2
+  headers:
+    user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36"
+
+editors:
+  start_url: "https://elifesciences.org/about/people"
+  url_pattern: "https://elifesciences.org/about/people/{section_slug}"
+  section_slugs:
+    - ""                                      # Editorial leadership team
+    - "staff"
+    - "biochemistry-chemical-biology"
+    - "cancer-biology"
+    - "cell-biology"
+    - "chromosomes-gene-expression"
+    - "computational-systems-biology"
+    - "developmental-biology"
+    - "ecology"
+    - "epidemiology-global-health"
+    - "evolutionary-biology"
+    - "genetics-genomics"
+    - "immunology-inflammation"
+    - "medicine"
+    - "microbiology-infectious-disease"
+    - "neuroscience"
+    - "physics-living-systems"
+    - "physiology"
+    - "plant-biology"
+    - "stem-cells-regenerative-medicine"
+    - "structural-biology-molecular-biophysics"
+    - "directors"
+    - "early-career"
+  board_section:
+    content_selector: "div.wrapper--listing"
+  parsing:
+    strategy: "elife"

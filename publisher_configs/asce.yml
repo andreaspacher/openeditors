@@ -1,0 +1,53 @@
+publisher:
+  key: asce
+  name: American Society of Civil Engineers
+  base_url: "https://ascelibrary.org"
+
+journals:
+  start_url: "https://ascelibrary.org/journals?pageSize=50&startPage=0"
+  page_size: 50
+
+  pagination:
+    type: query_param
+    param: startPage
+    start_at: 0
+    total_results:
+      selector: "span.result__count"
+      regex: "(\\d+)"
+
+  listing:
+    item_selector: "ul.rlist li.search__item"
+
+    fields:
+      journal:
+        selector: "h4 a"
+        attr: text
+      url:
+        selector: "h4 a"
+        attr: href
+
+editors:
+  url_pattern: "https://ascelibrary.org/page/{journal_slug}/editorialboard"
+  url_slug_extract:
+    from: journal_url
+    regex: '/journal/(.+)$'
+
+  board_section:
+    # Find the extrabottom div that contains an h3 with "Editorial Board"
+    title_selector: "div.extrabottom h3"
+    title_text: "Editorial Board"
+    content_selector: "div.extrabottom"
+
+  parsing:
+    strategy: "asce"
+
+fetch:
+  mode: browser
+  headers:
+    user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36"
+    accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    accept_language: "en-US,en;q=0.9"
+    referer: "https://ascelibrary.org/"
+  rate_limit:
+    min_seconds_per_request: 5
+

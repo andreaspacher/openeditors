@@ -1,0 +1,31 @@
+publisher:
+  key: pleiades
+  base_url: https://www.pleiades.online
+
+fetch:
+  mode: http
+  rate_limit:
+    min_seconds_per_request: 2
+  headers:
+    user_agent: "Mozilla/5.0 (compatible; academic-scraper/1.0)"
+
+journals:
+  start_url: https://www.pleiades.online/en/journals/catalog/alphabet/{letter}/
+  pagination:
+    type: alphabet
+    letters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+  listing:
+    item_selector: "div.book_item"
+    fields:
+      journal:
+        selector: "h3 b"
+        url_selector: "div.book_item_btn a"
+        url_attribute: href
+
+editors:
+  url_pattern: "{journal_url}board/"
+  board_section:
+    content_selector: ".tab-content"
+  parsing:
+    strategy: "pleiades"

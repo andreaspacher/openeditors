@@ -1,0 +1,50 @@
+publisher:
+  key: frontiers
+  name: Frontiers
+  base_url: "https://www.frontiersin.org"
+
+journals:
+  start_url: "https://www.frontiersin.org/journals"
+  page_size: 24
+
+  listing:
+    item_selector: "div.JournalCard__titleWrapper"
+
+    fields:
+      journal:
+        selector: "h2 a"
+        attr: text
+      url:
+        selector: "h2 a"
+        attr: href
+        transform:
+          - type: url_join
+            base: "https://www.frontiersin.org"
+
+  pagination:
+    type: "query_param"
+    param: "page"
+    start_at: 1  # Frontiers starts at page 1, not 0
+    total_results:
+      selector: "div.Pagination__footer"
+      regex: '(\d+)\s+journals'
+
+editors:
+  url_pattern: "{journal_url}/editors"
+  board_section:
+    full_page: true        # ← pass entire page HTML to the parser
+  parsing:
+    strategy: frontiers
+  scroll:
+    enabled: true
+    max_wait_seconds: 399
+    stable_after_attempts: 4
+    scroll_pause_seconds: 12      # minimum wait after each scroll before counting
+    post_networkidle_seconds: 40  # additional wait after networkidle settles
+
+fetch:
+  mode: "browser"
+  headers:
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  rate_limit:
+    min_seconds_per_request: 2

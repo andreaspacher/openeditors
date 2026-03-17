@@ -1,0 +1,29 @@
+publisher:
+  key: imedpub
+  name: imedpub
+  base_url: "https://www.imedpub.com"
+
+journals:
+  start_url: "https://www.imedpub.com/journals.php"
+  listing:
+    item_selector: "ul.nav.row li.nav-item.col-6"
+    fields:
+      journal:
+        selector: "a.nav-link"
+        attr: text
+      url:
+        selector: "a.nav-link"
+        attr: href
+
+editors:
+  parsing:
+    strategy: imedpub
+  board_section:
+    full_page: true
+
+fetch:
+  mode: browser
+  rate_limit:
+    min_seconds_per_request: 4
+  headers:
+    user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
