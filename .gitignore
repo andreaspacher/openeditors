@@ -7,3 +7,4 @@ __pycache__/
 **/__pycache__/
 *.pyc
 *.pyo
+06_sync_mysqltables.py

@@ -10,7 +10,7 @@ OpenEditors collects structured data about journal editors (names, roles, affili
 
 (Note that to avoid false positives caused by scraping failures or infinite-scroll timeouts, a confirmation window is used: an editor is only recorded as added or removed after the same outcome is observed across three consecutive scrape runs.)
 
-The resulting dataset is publicly accessible via a **dashboard at [openeditors.ooir.org](https://openeditors.ooir.org/)**. Former version are archived on Zenodo: [https://doi.org/10.5281/zenodo.4619374](https://doi.org/10.5281/zenodo.4619374) (versions from 2021, 2022, and 2026).
+The resulting dataset is publicly accessible via a **dashboard at [openeditors.ooir.org](https://openeditors.ooir.org/)**, and a snapshot from March 2026 can be downloaded as a CSV file at Zenodo: [https://doi.org/10.5281/zenodo.19108866](https://doi.org/10.5281/zenodo.19108866). Former versions are archived on Zenodo: [https://doi.org/10.5281/zenodo.4619374](https://doi.org/10.5281/zenodo.4619374) (versions from 2021 and 2022).
 
 ---
 
